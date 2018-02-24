@@ -12,9 +12,32 @@ namespace Vidly.Controllers
         // GET: Movies/Random
         public ActionResult Random()
         {
+            
             var movie  = new Movies() { Name = "Black Panther"};
 
+            //ActioResult is the prefered run type, so that we can return any of its subtypes; ViewResult, PartialViewResult, ContentResult, RedirectResult, FileResult, HttpNotFoundResult
+
             return View(movie);
+
+            //return Content("Hi Ivan");
+
+            //return HttpNotFound();
+
+            //return RedirectToAction("Index", "Home");
+
+        }
+
+        //movies
+        public ActionResult Index(int? pageIndex, string sortBy)
+        {
+            if (!pageIndex.HasValue)
+                pageIndex = 1;
+
+            if (String.IsNullOrEmpty(sortBy))
+                sortBy = "Name";
+
+            return Content(String.Format("pageIndex={0}&sortBy={0}", pageIndex));
+
         }
     }
 }
